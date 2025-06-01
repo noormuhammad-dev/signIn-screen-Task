@@ -1,11 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View } from "react-native";
+import { useFonts } from "expo-font";
+import Constants from "expo-constants";
+import SigninScreen from "./screens/SigninScreen";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    inter: require("./assets/fonts/Inter_28pt-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <SigninScreen />
+      <StatusBar style="light" />
     </View>
   );
 }
@@ -13,8 +24,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: "#030303",
   },
 });
